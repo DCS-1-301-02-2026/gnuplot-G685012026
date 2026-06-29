@@ -26,6 +26,21 @@
 ```gnuplot {cmd=true output="html"}
 set terminal svg
 
+f1(x)=2*x**2*sqrt(x)-5*x**2
+f2(x)=x/log(x)
+
+set xrange [0:7]
+set yrange [-20:15]
+
+set title "Function Plot"
+set xlabel "x"
+set ylabel "y"
+
+set grid
+
+plot f1(x) with lines title "f1(x)", \
+     f2(x) with lines title "f2(x)"
+
 ```
 
 ## 3. 八王子の気温
@@ -43,10 +58,22 @@ set terminal svg
 
 ```gnuplot {cmd=true, output="html"}
 set terminal svg
+set datafile separator ","
+
 set xdata time
 set timefmt '%Y/%m/%d'
 set xtics format "%m/%d"
 
+set title "八王子の気温(過去1年間)"
+set xlabel "日付"
+set ylabel "気温(℃)"
+
+set grid
+
+plot "weather2026.csv" every ::1 using 1:2 with lines title "最高気温", \
+     "weather2026.csv" every ::1 using 1:3 with lines title "最高気温(平年)", \
+     "weather2026.csv" every ::1 using 1:4 with lines title "最低気温", \
+     "weather2026.csv" every ::1 using 1:5 with lines title "最低気温(平年)"
 ```
 
 ## 4． 誕生月
@@ -67,5 +94,20 @@ set xtics format "%m/%d"
 set terminal svg
 unset key
 
+set style fill solid
+set boxwidth 0.6
+
+set yrange [0:18]
+
+
+set title "誕生月"
+set ylabel "人"
+
+set xtics ("1月" 1,"2月" 2,"3月" 3,"4月" 4,"5月" 5,"6月" 6,\
+           "7月" 7,"8月" 8,"9月" 9,"10月" 10,"11月" 11,"12月" 12)
+
+set grid
+
+plot "bm.txt" using 1:2 with boxes lc rgb "skyblue"
 
 ```
