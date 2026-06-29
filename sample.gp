@@ -4,7 +4,7 @@
 unset key
 set style fill solid
 set boxwidth 0.6
-set yrange [0:55]
+set yrange [0:60]
 set grid
 set title "大谷選手のホームラン記録"
 set xlabel "シーズン"
